@@ -3,7 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Pumpkin
+  - Fire
+  - Fireball
+  - Enemy
+  - Breadcrumb
+  - Waypoint
   layers:
   - Default
   - TransparentFX
@@ -13,10 +19,10 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Enemy
+  - Breadcrumb
+  - Waypoint
   - 
   - 
   - 

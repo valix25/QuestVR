@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class ControlAnimations : MonoBehaviour {
 
-	public int defend_time = 2;
-
 	private Animator anim;
-	bool started_defend = false;
-	float defend_timer = 0.0f;
-	bool attack1_trigger = false;
-	bool attack2_trigger = false;
+	private bool started_defend = false;
+	private float defend_timer = 0.0f;
+	private bool started_fireball = true;
+	private float fireball_timer = 0.0f;
+
+	public int defend_time = 2;
+	public int fireball_time = 1;
+	public GameObject fireball;
+	public Camera camera;
+	public float beamSpeed = 2f;
+	public float range = 100f;
+	public float fireballDelay = 0.5f;
 
 	// Use this for initialization
 	void Start () {
@@ -37,15 +43,19 @@ public class ControlAnimations : MonoBehaviour {
 
 		if (Input.GetButton("Fire1")) {
 			print ("Pressed fire1 / left mouse button");
-			//anim.SetBool ("attack1", true);
-			//attack1_trigger = true;
 			anim.Play("attack1");
 		}
 
-		if (Input.GetButton ("Fire2")) {
-			// anim.SetBool ("attack2", true);
-			//attack2_trigger = true;
+		if (started_fireball) {
+			fireball_timer += Time.deltaTime;
+			if (fireball_timer % 60 > fireball_time) {
+				started_fireball = false;
+				fireball_timer = 0.0f;
+			}
+		} else if (Input.GetButton ("Fire2")) {
 			anim.Play("attack2");
+			Invoke("shootRaycast", fireballDelay);
+			started_fireball = true;
 		}
 
 		if (Input.GetKey (KeyCode.W)) {
@@ -53,6 +63,28 @@ public class ControlAnimations : MonoBehaviour {
 			anim.SetBool ("run", true);
 		} else {
 			anim.SetBool ("run", false);
+		}
+	}
+
+	void shootRaycast() {
+		// 1. Instantiate fireball
+		GameObject projectile = Instantiate (fireball) as GameObject;
+		projectile.transform.position = camera.transform.position + camera.transform.forward * 2 + Vector3.up * 0.3f;
+		// Vector3 newrotation = camera.transform.rotation.eulerAngles;
+		// newrotation += new Vector3 (0.0f, -90.0f, 0.0f);
+		// projectile.transform.Rotate(newrotation);
+		// 2. Give the fireball some velocity in the viewing direction
+		Rigidbody rb = projectile.GetComponent<Rigidbody> ();
+		rb.velocity = camera.transform.forward * beamSpeed;
+		Destroy (projectile, 5.0f);
+
+		RaycastHit hit;
+		if (Physics.Raycast (camera.transform.position, camera.transform.forward, out hit, range)) {
+			print (hit.transform.tag);
+			// Enemy enemy = hit.transform.GetComponent<Enemy> ();
+			// if (enemy != null) {
+			// 	enemy.Die ();
+			// }
 		}
 	}
 }
