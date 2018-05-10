@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - Breadcrumb
   - Waypoint
+  - Environment
+  - Laser
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -23,8 +26,8 @@ TagManager:
   - Enemy
   - Breadcrumb
   - Waypoint
-  - 
-  - 
+  - Fireball
+  - Environment
   - 
   - 
   - 

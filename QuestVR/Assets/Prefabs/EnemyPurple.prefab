@@ -55,7 +55,8 @@ GameObject:
   - component: {fileID: 114236264763900780}
   - component: {fileID: 114469337487511102}
   - component: {fileID: 54609189187952374}
-  - component: {fileID: 82212715231877492}
+  - component: {fileID: 82743544551015754}
+  - component: {fileID: 114474023600167084}
   m_Layer: 9
   m_Name: EnemyPurple
   m_TagString: Enemy
@@ -190,23 +191,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 116
   m_CollisionDetection: 0
---- !u!82 &82212715231877492
+--- !u!82 &82743544551015754
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1773793440349384}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: ae36146c39ffe4f7d860cd910dac56f5, type: 3}
+  OutputAudioMixerGroup: {fileID: 24300002, guid: 248799cb4acba48f7b3ee842a80f788c,
+    type: 2}
+  m_audioClip: {fileID: 8300000, guid: 21f31770042da3c4685c63ad4444c962, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
+  Spatialize: 1
+  SpatializePostEffects: 1
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
@@ -239,7 +241,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -338,7 +340,7 @@ MonoBehaviour:
   _IsGround: 1
   _IsAir: 0
   _IsInvincible: 0
-  followSpeed: 7
+  followSpeed: 8
   wanderSpeed: 5
   patrolSpeed: 5
   rotationSpeed: 0.2
@@ -397,6 +399,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5f4f13df96134bb39f7beedd3f3b1aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion: {fileID: 100010, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 2}
+--- !u!114 &114474023600167084
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1773793440349384}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef5e1719799ca4f9b9f5db81449517ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bypassRoomEffects: 0
+  directivityAlpha: 0
+  directivitySharpness: 1
+  listenerDirectivityAlpha: 0
+  listenerDirectivitySharpness: 1
+  gainDb: 10
+  nearFieldEffectEnabled: 0
+  nearFieldEffectGain: 1
+  occlusionEnabled: 0
+  occlusionIntensity: 1
+  quality: 2
 --- !u!135 &135931646439183106
 SphereCollider:
   m_ObjectHideFlags: 1
