@@ -9,7 +9,11 @@ public class Enemy : MonoBehaviour {
 	public void Die() {
 		// possibly play some effect, animation here
 		Destroy (gameObject);
+<<<<<<< HEAD
 		playExplosionEffect();
+=======
+		playExplosionEffect ();
+>>>>>>> 685c2184897854858b01422b93f0a9fbb28cd295
 	}
 
 	void OnCollisionEnter(Collision col){
