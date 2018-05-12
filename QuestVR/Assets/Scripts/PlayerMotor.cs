@@ -29,7 +29,7 @@ public class PlayerMotor : MonoBehaviour {
 	void FixedUpdate () {
 		PerformMovement ();
 		PerformRotation ();
-		PerformJumping ();
+		// PerformJumping ();
 	}
 
 	public void Move(Vector3 _velocity) {
@@ -51,16 +51,14 @@ public class PlayerMotor : MonoBehaviour {
 	private void PerformMovement(){
 		if (velocity != Vector3.zero) {
 			rb.MovePosition (transform.position + velocity * Time.fixedDeltaTime);
+			// transform.position += velocity * Time.fixedDeltaTime;
 		}
-//		if (thrusterForce != Vector3.zero) {
-//			rb.AddForce (thrusterForce * Time.fixedDeltaTime, ForceMode.Acceleration);
-//		}
 	}
 
 	private void PerformJumping() {
 		if (velocity != Vector3.zero) {
 			if (thrusterForce != Vector3.zero) {
-				rb.AddForce (thrusterForce * Time.fixedDeltaTime, ForceMode.Acceleration);
+				// rb.AddForce (thrusterForce * Time.fixedDeltaTime, ForceMode.Acceleration);
 			}
 		}
 	}
@@ -68,12 +66,11 @@ public class PlayerMotor : MonoBehaviour {
 	private void PerformRotation() {
 		if (rotation != Vector3.zero) {
 			rb.MoveRotation (rb.rotation * Quaternion.Euler (rotation));
+			//transform.Rotate (rotation);
+		} else {
+			rb.angularVelocity = Vector3.zero;
 		}
 		if (cam != null) {
-//			if (cameraRotation != Vector3.zero) {
-//				cam.transform.Rotate (-cameraRotation);
-//			}
-			// New rotational calculation
 			currentCameraRotationX -= cameraRotationX;
 			currentCameraRotationX = Mathf.Clamp (currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
 			cam.transform.localEulerAngles = new Vector3 (currentCameraRotationX, 0f, 0f);
