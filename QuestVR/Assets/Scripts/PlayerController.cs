@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 		} else {
 			motor.Move (Vector3.zero);
 		}
-		headBobbing();
+		//headBobbing();
 
 		// 2. Calculate rotation as a 3D vector (turning around left -- right)
 		float _yRot = Input.GetAxisRaw("Mouse X");
