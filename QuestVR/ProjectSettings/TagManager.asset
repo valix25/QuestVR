@@ -13,6 +13,7 @@ TagManager:
   - Environment
   - Laser
   - Shield
+  - Portal
   layers:
   - Default
   - TransparentFX
