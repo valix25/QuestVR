@@ -745,6 +745,11 @@ MonoBehaviour:
   m_Area: 1
   m_IgnoreFromBuild: 0
   m_AffectedAgents: ffffffff
+--- !u!4 &343325235 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4734878941997382, guid: b61b28ef0d203496ebfb4d0892cd53e8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1958886292}
 --- !u!1001 &353767731
 Prefab:
   m_ObjectHideFlags: 0
