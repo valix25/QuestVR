@@ -4,12 +4,12 @@ using UnityEngine;
 
 
 public enum DragonState {
-	Idle, Weak, Dead
+	Idle, Mad, Calmed
 }
 
 public class Dragon : MonoBehaviour {
 
-	public DragonState state;
+	public DragonState state; // For testing
 	private DragonState currentState;
 	private playerControl dragon;
 
@@ -19,19 +19,19 @@ public class Dragon : MonoBehaviour {
 	}
 	
 	void Update () {
-		
+		SetState (state); // For testing
 	}
 
 	public void SetState(DragonState newState) {
 		
-		if (newState != state) {
-			state = newState;
+		if (newState != currentState) {
+			currentState = newState;
 			switch (state) {
-			case DragonState.Weak:
-				dragon.Idle02 ();
+			case DragonState.Mad:
+				dragon.ClawAttack ();
 				break;
-			case DragonState.Dead:
-				dragon.Die ();
+			case DragonState.Calmed:
+				dragon.Idle02 ();
 				break;
 			}
 		}
@@ -41,7 +41,7 @@ public class Dragon : MonoBehaviour {
 		dragon.Scream ();
 	}
 
-	public void Attack () {
-		dragon.ClawAttack ();
-	}
+//	public void Attack () {
+//		dragon.ClawAttack ();
+//	}
 }

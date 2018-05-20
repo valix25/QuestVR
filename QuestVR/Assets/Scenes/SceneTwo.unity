@@ -2815,6 +2815,17 @@ GameObject:
   m_PrefabParentObject: {fileID: 1621388125089894, guid: 70b9d1201dbfb47a78cdfd46e4f04d8d,
     type: 2}
   m_PrefabInternal: {fileID: 1575088738}
+--- !u!114 &1173937169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1173937168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4ce3ace09cd540deacb52daa48e79a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!195 &1173937182
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2836,17 +2847,6 @@ NavMeshAgent:
   m_BaseOffset: 2.63
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1173937183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1173937168}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd8b7251dbf04a44bc154821dbafba1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1218720381 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1976185560836216, guid: 77a24da194417419b94d853989f215ee,
@@ -3584,7 +3584,8 @@ Prefab:
       propertyPath: m_ConnectedAnchor.z
       value: -51
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 114870880989274038, guid: 70b9d1201dbfb47a78cdfd46e4f04d8d, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 70b9d1201dbfb47a78cdfd46e4f04d8d, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &1577736152 stripped
