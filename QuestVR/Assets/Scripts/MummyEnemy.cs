@@ -74,7 +74,7 @@ public class MummyEnemy : MonoBehaviour {
 			navAgent.isStopped = true;
 
 			if (computeDistanceCore () < coreDistance && wasHit == false) {
-				print ("Lives -1");
+				Debug.Log("VR: Lives -1");
 				reducePlayerLives ();
 				wasHit = true;
 			}
