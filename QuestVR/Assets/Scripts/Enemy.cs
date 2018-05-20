@@ -6,12 +6,6 @@ public class Enemy : MonoBehaviour {
 
 	public GameObject explosion;
 
-	public void Die() {
-		// possibly play some effect, animation here
-		Destroy (gameObject);
-		playExplosionEffect ();
-	}
-
 	void OnCollisionEnter(Collision col){
 		if (col.gameObject.tag == "Laser") {
 			Die ();
@@ -23,6 +17,12 @@ public class Enemy : MonoBehaviour {
 		if (col.gameObject.tag == "Player") {
 			Die ();
 		}
+	}
+
+	public void Die() {
+		// possibly play some effect, animation here
+		Destroy (gameObject);
+		playExplosionEffect ();
 	}
 
 	void playExplosionEffect() {

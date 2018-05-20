@@ -45,6 +45,7 @@ public class ControlAnimations : MonoBehaviour {
 	public int laserTime = 2;
 	public float laserSpeed = 3f;
 	public float laserDelay = 1.0f;
+	public GameObject sword;
 
 	// Microphone recording parameters
 	private int _recordingRoutine = 0;
@@ -215,11 +216,11 @@ public class ControlAnimations : MonoBehaviour {
 					if (alt.transcript.ToLower().Contains ("laser")) {
 						mode = 3;
 					}
-					if (alt.transcript.ToLower ().Contains ("disable")) {
-						Active = false;
-						_active = false;
-						StopRecording ();
-					}
+//					if (alt.transcript.ToLower ().Contains ("disable")) {
+//						Active = false;
+//						_active = false;
+//						StopRecording ();
+//					}
 					if (alt.transcript.ToLower ().Contains ("stop")) {
 						mode = 0;
 					}
@@ -298,7 +299,7 @@ public class ControlAnimations : MonoBehaviour {
 			if (laser_timer % 60 > laserTime) {
 				started_laser = false;
 				laser_timer = 0.0f;
-				mode = 0;
+				// mode = 0;
 			}
 		} else {
 			if (Input.GetButton ("Fire2") && _active == false) {
@@ -312,8 +313,21 @@ public class ControlAnimations : MonoBehaviour {
 				started_laser = true;
 			}
 		}
+
+		if (Input.GetKey (KeyCode.X)) {
+			if (sword != null) {
+				sword.SetActive (!sword.activeSelf);
+			}
+			// Invoke ("swordStyle", 0.1f);
+		}
+
+		if (Input.GetKey (KeyCode.E)) {
+			if (sword != null && sword.activeSelf) {
+				expandSword ();
+			}
+		}
 			
-		// 4. Trigger run animation
+		// 5. Trigger run animation
 		if (Input.GetKey (KeyCode.W)) {
 			anim.SetBool ("run", true);
 		} else {
@@ -354,5 +368,21 @@ public class ControlAnimations : MonoBehaviour {
 		newrotation += new Vector3 (0.0f, 180.0f, 0.0f);
 		shieldObj.transform.Rotate (newrotation);
 		Destroy (shieldObj, shieldLifetime);
+	}
+
+	void swordStyle(){
+		// 1. Instantiate sword
+		GameObject swordObj = Instantiate(sword) as GameObject;
+		swordObj.transform.position = camera.transform.position + camera.transform.forward * 3f - Vector3.up * 0.5f;
+		Vector3 newrotation = new Vector3(90.0f, camera.transform.rotation.eulerAngles.y, camera.transform.rotation.eulerAngles.z);
+		// newrotation += new Vector3 (0.0f, 180.0f, 0.0f);
+		swordObj.transform.Rotate (newrotation);
+	}
+
+	void expandSword() {
+		Vector3 addToScale = new Vector3 (0.0f, sword.transform.localScale.y, 0.0f);
+		sword.transform.localScale += addToScale;
+		Vector3 addToZ = new Vector3(0.0f, 0.0f, sword.transform.localScale.y / 4);
+		sword.transform.position += addToZ;
 	}
 }

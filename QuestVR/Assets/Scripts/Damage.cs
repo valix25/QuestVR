@@ -4,27 +4,25 @@ using UnityEngine.SceneManagement;
 
 public class Damage : MonoBehaviour {
 
-	int lives = 3;
+	public int lives = 3;
 	VignetteModel.Settings originalVignetteSettings;
 	bool isOriginalSet = false;
 	Color color;
 	bool isColorSet = false;
 	public PostProcessingProfile profile;
-
-	// Use this for initialization
-	void Start () {
-		
-	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (lives <= 0) {
+			float fadeTime = this.GetComponent<Fading> ().BeginFade (1);
+			Invoke ("reloadScene", fadeTime/1.5f);
+		}
 	}
 
 	void OnCollisionEnter(Collision col) {
 		if (col.gameObject.tag == "Enemy") {
 			lives -= 1;
-			damageEffect ();
+			//damageEffect (); <-- Needs a postprocessing profile
 		}
 	}
 
@@ -53,6 +51,8 @@ public class Damage : MonoBehaviour {
 
 	void reloadScene() {
 		SceneManager.LoadScene (SceneManager.GetActiveScene ().name);
-		profile.vignette.settings = originalVignetteSettings;
+		if (profile != null) {
+			profile.vignette.settings = originalVignetteSettings;
+		}
 	}
 }

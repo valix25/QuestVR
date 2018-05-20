@@ -14,6 +14,7 @@ TagManager:
   - Laser
   - Shield
   - Portal
+  - Mummy
   layers:
   - Default
   - TransparentFX
@@ -29,7 +30,7 @@ TagManager:
   - Waypoint
   - Fireball
   - Environment
-  - 
+  - Mummy
   - 
   - 
   - 
