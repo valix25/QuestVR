@@ -28,6 +28,9 @@ public class RawInteraction : MonoBehaviour {
     public Material backIdle;
     public Material backACtive;
     public UnityEngine.UI.Text outText;
+	public bool selected = false;
+	// maybe unnecessary in latest implementation
+	public GameObject bridge;
 
     public void OnHoverEnter(Transform t) {
         if (t.gameObject.name == "BackButton") {
@@ -52,7 +55,20 @@ public class RawInteraction : MonoBehaviour {
         if (outText != null) {
             outText.text = "<b>Last Interaction:</b>\nHover Exit:" + t.gameObject.name;
         }
+		selected = false;
     }
+
+	public void OnHover(Transform t) {
+		if(OVRInput.GetDown (OVRInput.Button.PrimaryIndexTrigger) && !selected){
+			selected = true;
+			Debug.Log ("VR: Selected is " + selected);
+
+		}
+		/*else if(OVRInput.GetDown (OVRInput.Button.PrimaryIndexTrigger) && selected){
+			selected = false;
+			Debug.Log ("VR: Selected is " + selected);
+		}*/
+	}
 
     public void OnSelected(Transform t) {
         if (t.gameObject.name == "BackButton") {

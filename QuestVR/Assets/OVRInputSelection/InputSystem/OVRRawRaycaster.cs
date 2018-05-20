@@ -34,6 +34,9 @@ namespace ControllerSelection {
         [Tooltip("Tracking space of the OVRCameraRig.\nIf tracking space is not set, the scene will be searched.\nThis search is expensive.")]
         public Transform trackingSpace = null;
 
+		public RawInteraction rawInteractions;
+		public Vector3 newPosition;
+
 
         [Header("Selection")]
         [Tooltip("Primary selection button")]
@@ -90,6 +93,20 @@ namespace ControllerSelection {
 
             RaycastHit hit; // Was anything hit?
             if (Physics.Raycast(pointer, out hit, raycastDistance, ~excludeLayers)) {
+				// Here not yet defined in rawInteractions
+
+				if (rawInteractions.selected == true) {
+					Debug.Log ("VR: the color of hit object is - " + hit.transform.gameObject.GetComponent<Renderer> ().material.name);
+					if (hit.transform.name == "blue") { 
+						newPosition = new Vector3 (hit.transform.position.x, hit.transform.position.y, hit.point.z);
+						hit.transform.position = newPosition;
+					} else if (hit.transform.name == "red") {
+						// hit.transform.gameObject.GetComponent<Renderer> ().material.name
+						newPosition = new Vector3 (hit.point.x, hit.transform.position.y, hit.transform.position.z);
+						hit.transform.position = newPosition;
+					}
+				}
+
                 if (lastHit != null && lastHit != hit.transform) {
                     if (onHoverExit != null) {
                         onHoverExit.Invoke(lastHit);
