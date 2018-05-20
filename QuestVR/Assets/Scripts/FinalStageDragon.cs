@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FinalStageDragon : MonoBehaviour {
 
@@ -82,7 +83,11 @@ public class FinalStageDragon : MonoBehaviour {
 
 	void fadeOutScene(){
 		float fadeTime = this.GetComponent<Fading> ().BeginFade (1);
-		Invoke ("quitGame", fadeTime/1.5f);
+		Invoke ("showCredits", fadeTime/1.5f);
+	}
+
+	void showCredits(){
+		SceneManager.LoadScene ("Credits");
 	}
 
 	void quitGame() {
