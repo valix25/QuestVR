@@ -33,12 +33,9 @@ public class RawInteraction : MonoBehaviour {
 	public GameObject bridge;
 
     public void OnHoverEnter(Transform t) {
-        if (t.gameObject.name == "BackButton") {
-            t.gameObject.GetComponent<Renderer>().material = backACtive;
-        }
-        else {
-            oldHoverMat = t.gameObject.GetComponent<Renderer>().material;
-            t.gameObject.GetComponent<Renderer>().material = yellowMat;
+		if (t.gameObject.name == "red" || t.gameObject.name == "blue" ) {
+			oldHoverMat = t.gameObject.GetComponentInChildren <Renderer>().material;
+			t.gameObject.GetComponentInChildren <Renderer>().material = yellowMat;
         }
         if (outText != null) {
             outText.text = "<b>Last Interaction:</b>\nHover Enter:" + t.gameObject.name;
@@ -47,14 +44,8 @@ public class RawInteraction : MonoBehaviour {
 
     public void OnHoverExit(Transform t) {
 		selected = false;
-        if (t.gameObject.name == "BackButton") {
-            t.gameObject.GetComponent<Renderer>().material = backIdle;
-        }
-        else {
-            t.gameObject.GetComponent<Renderer>().material = oldHoverMat;
-        }
-        if (outText != null) {
-            outText.text = "<b>Last Interaction:</b>\nHover Exit:" + t.gameObject.name;
+		if (t.gameObject.name == "red" || t.gameObject.name == "blue" ) {
+			t.gameObject.GetComponentInChildren<Renderer>().material = oldHoverMat;
         }
     }
 
@@ -70,14 +61,7 @@ public class RawInteraction : MonoBehaviour {
 		}*/
 	}
 
-    public void OnSelected(Transform t) {
-        if (t.gameObject.name == "BackButton") {
-            SceneManager.LoadScene("main", LoadSceneMode.Single);
-        }
-        Debug.Log("VR: PrimaryTrigger released?");
-        if (outText != null) {
-            outText.text = "<b>Last Interaction:</b>\nClicked On:" + t.gameObject.name;
-        }
+    public void OnSelected(Transform t) { // primary trigger released
 		selected = false;
     }
 }

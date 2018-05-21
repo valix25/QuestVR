@@ -15,6 +15,7 @@ TagManager:
   - Shield
   - Portal
   - Mummy
+  - Water
   layers:
   - Default
   - TransparentFX

@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour {
 			activeWalk = true;
 			referenceX = OVRInput.GetLocalControllerRotation (OVRInput.Controller.RTrackedRemote).eulerAngles.x;
 			if (referenceX < 91)
-				referenceX +=  360.0f;
+				referenceX += 360.0f;
 		} else if (OVRInput.GetDown (OVRInput.Button.PrimaryTouchpad) && activeWalk) {
 			activeWalk = false;
 			speed = 0;
@@ -36,18 +36,18 @@ public class PlayerMove : MonoBehaviour {
 			differenceX = (int)(referenceX - currentX);
 			//speed = 0; Attention, need upper-lower boundaries because otherwise it will default to the next opt without upper boudary
 			if (differenceX >= 70 && differenceX < 120) {
-				if (speed != 12) {
-					speed = 12;
+				if (speed != 16) {
+					speed = 16;
 					Debug.Log ("VR: Speed set to " + speed);
 				}
 			} else if (differenceX >= 50 && differenceX < 70) {
-				if (speed != 6) {
-					speed = 6;
+				if (speed != 8) {
+					speed = 8;
 					Debug.Log ("VR: Speed set to " + speed);
 				}
 			} else if (differenceX >= 30 && differenceX < 50) {
-				if (speed != 3) {
-					speed = 3;
+				if (speed != 5) {
+					speed = 5;
 					Debug.Log ("VR: Speed set to " + speed);
 				}
 			} else if (differenceX >= 0 && differenceX < 30) {
@@ -55,15 +55,27 @@ public class PlayerMove : MonoBehaviour {
 					speed = 1;
 					Debug.Log ("VR: Speed set to 1");
 				}
-			} else {
+			} else if (differenceX < 0 && differenceX > -30) {
+				if (Mathf.Abs (speed) != 4) {
+					speed = -4;
+					Debug.Log ("VR: Speed set to 1");
+				}
+
+			} else if (differenceX < -30 && differenceX > -100) {
+				if (Mathf.Abs (speed) != 8) {
+					speed = -8;
+					Debug.Log ("VR: Speed set to 1");
+				}
+			}
+			else {
 				speed = 0;
 				Debug.Log ("VR: Default case Speed set to " + speed);
 			}
 		} else if (!activeWalk) {
-			if (speed != 0) speed = 0;
+			if (speed != 0)
+				speed = 0;
 		}
 	}
-
 	public void Translate(){
 		Vector3 move = Vector3.zero;
 		move += centralAnchor.transform.forward;
