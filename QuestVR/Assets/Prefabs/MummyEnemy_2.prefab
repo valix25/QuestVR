@@ -1800,7 +1800,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 0
+      value: 1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1891,6 +1891,7 @@ MonoBehaviour:
   mummyDeathTime: 1.3
   weapon: {fileID: 1254897171536972}
   navAgent: {fileID: 195051141011388708}
+  spawningOrigin: {fileID: 0}
   mummyType: Spear
   runTrigger: Run
   attackTrigger: Atack
