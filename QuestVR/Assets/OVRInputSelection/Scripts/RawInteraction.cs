@@ -46,6 +46,7 @@ public class RawInteraction : MonoBehaviour {
     }
 
     public void OnHoverExit(Transform t) {
+		selected = false;
         if (t.gameObject.name == "BackButton") {
             t.gameObject.GetComponent<Renderer>().material = backIdle;
         }
@@ -55,7 +56,6 @@ public class RawInteraction : MonoBehaviour {
         if (outText != null) {
             outText.text = "<b>Last Interaction:</b>\nHover Exit:" + t.gameObject.name;
         }
-		selected = false;
     }
 
 	public void OnHover(Transform t) {
@@ -74,9 +74,10 @@ public class RawInteraction : MonoBehaviour {
         if (t.gameObject.name == "BackButton") {
             SceneManager.LoadScene("main", LoadSceneMode.Single);
         }
-        Debug.Log("Clicked on " + t.gameObject.name);
+        Debug.Log("VR: PrimaryTrigger released?");
         if (outText != null) {
             outText.text = "<b>Last Interaction:</b>\nClicked On:" + t.gameObject.name;
         }
+		selected = false;
     }
 }
