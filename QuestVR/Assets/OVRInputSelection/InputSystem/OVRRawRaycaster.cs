@@ -94,16 +94,23 @@ namespace ControllerSelection {
             RaycastHit hit; // Was anything hit?
             if (Physics.Raycast(pointer, out hit, raycastDistance, ~excludeLayers)) {
 				// Here not yet defined in rawInteractions
-
+				Debug.Log("VR: hit " + hit.transform.name);
 				if (rawInteractions.selected == true) {
-					Debug.Log ("VR: the color of hit object is - " + hit.transform.gameObject.GetComponent<Renderer> ().material.name);
-					if (hit.transform.name == "blue") { 
+					Debug.Log ("VR: hit this object with tag = " + hit.transform.tag);
+					if (hit.transform.tag == "blue") {  
 						newPosition = new Vector3 (hit.transform.position.x, hit.transform.position.y, hit.point.z);
 						hit.transform.position = newPosition;
-					} else if (hit.transform.name == "red") {
+					} else if (hit.transform.tag == "red") {
 						// hit.transform.gameObject.GetComponent<Renderer> ().material.name
 						newPosition = new Vector3 (hit.point.x, hit.transform.position.y, hit.transform.position.z);
 						hit.transform.position = newPosition;
+					} else if (hit.transform.tag == "sword") {
+						SwordOnDragon sword = hit.collider.GetComponentInParent <SwordOnDragon> ();
+							//GetComponent<SwordOnDragon> ();
+						if (sword) {
+							sword.TakeSword ();
+							Debug.Log ("VR: takesword called");
+						}
 					}
 				}
 

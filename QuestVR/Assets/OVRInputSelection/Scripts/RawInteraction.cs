@@ -25,6 +25,7 @@ using UnityEngine.SceneManagement;
 public class RawInteraction : MonoBehaviour {
     protected Material oldHoverMat;
     public Material yellowMat;
+	public Material redMat;
     public Material backIdle;
     public Material backACtive;
     public UnityEngine.UI.Text outText;
@@ -37,6 +38,10 @@ public class RawInteraction : MonoBehaviour {
 			oldHoverMat = t.gameObject.GetComponentInChildren <Renderer>().material;
 			t.gameObject.GetComponentInChildren <Renderer>().material = yellowMat;
         }
+		if (t.gameObject.tag == "sword") {
+			oldHoverMat = t.gameObject.GetComponent <Renderer> ().material;
+			t.gameObject.GetComponent <Renderer>().material = yellowMat;
+		}
         if (outText != null) {
             outText.text = "<b>Last Interaction:</b>\nHover Enter:" + t.gameObject.name;
         }
@@ -44,16 +49,19 @@ public class RawInteraction : MonoBehaviour {
 
     public void OnHoverExit(Transform t) {
 		selected = false;
-		if (t.gameObject.name == "red" || t.gameObject.name == "blue" ) {
+		if (t.gameObject.tag == "red" || t.gameObject.tag == "blue" ) {
 			t.gameObject.GetComponentInChildren<Renderer>().material = oldHoverMat;
         }
+		if (t.gameObject.tag == "sword") {
+			t.gameObject.GetComponent <Renderer>().material = oldHoverMat;
+		}
     }
 
 	public void OnHover(Transform t) {
 		if(OVRInput.GetDown (OVRInput.Button.PrimaryIndexTrigger) && !selected){
 			selected = true;
 			Debug.Log ("VR: Selected is " + selected);
-
+			Debug.Log ("VR: selected object is " + t.transform.name);
 		}
 		/*else if(OVRInput.GetDown (OVRInput.Button.PrimaryIndexTrigger) && selected){
 			selected = false;

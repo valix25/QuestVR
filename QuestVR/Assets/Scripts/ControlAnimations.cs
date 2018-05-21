@@ -287,7 +287,7 @@ public class ControlAnimations : MonoBehaviour {
 				mode = 0;
 			}
 		} else {
-			if (Input.GetButton ("Fire1") && _active == false) {
+			if (Input.GetButton ("Fire2") && _active == false) {
 				anim.Play ("attack1");
 				Invoke ("shootFireball", fireballDelay);
 				started_fireball = true;

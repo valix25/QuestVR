@@ -18,6 +18,9 @@ TagManager:
   - Water
   - Dragon
   - DragonHead
+  - blue
+  - red
+  - sword
   layers:
   - Default
   - TransparentFX
