@@ -10,6 +10,7 @@ public class Damage : MonoBehaviour {
 	Color color;
 	bool isColorSet = false;
 	public PostProcessingProfile profile;
+	// public Dragon dragon;
 	
 	// Update is called once per frame
 	void Update () {
@@ -24,6 +25,10 @@ public class Damage : MonoBehaviour {
 			lives -= 1;
 			//damageEffect (); <-- Needs a postprocessing profile
 		}
+//		else if (col.gameObject.tag == "Dragon") { // && dragon.state == DragonState.Mad) {
+//			lives -= 1;
+//			Debug.Log ("Attacked by mad dragon");
+//		}
 	}
 
 	void damageEffect(){

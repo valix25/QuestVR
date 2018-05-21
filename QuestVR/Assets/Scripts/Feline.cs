@@ -6,13 +6,13 @@ public class Feline : MonoBehaviour {
 
 	public Dragon dragon;
 	
-	void OnDestroy()
-	{
-		if (transform.parent.childCount <= 1)
-			dragon.SetState(DragonState.Dead);
-		else
-			dragon.SetState(DragonState.Weak);
-	}
+//	void OnDestroy()
+//	{
+//		if (transform.parent.childCount <= 1)
+//			dragon.SetState(DragonState.Dead);
+//		else
+//			dragon.SetState(DragonState.Weak);
+//	}
 
 //	void OnDisable()
 //	{

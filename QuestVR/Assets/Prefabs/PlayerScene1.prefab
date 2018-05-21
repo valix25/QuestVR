@@ -153,7 +153,6 @@ GameObject:
   - component: {fileID: 82699543333441766}
   - component: {fileID: 65261240165351978}
   - component: {fileID: 114259590774755316}
-  - component: {fileID: 114988258191753950}
   - component: {fileID: 114292635951998314}
   - component: {fileID: 114641250869562862}
   - component: {fileID: 114661035511618812}
@@ -5177,6 +5176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f378cf978782c42a0b7803b639bf37fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dragon: {fileID: 0}
   _username: 0dd34861-90ef-4dc6-9173-99907f978616
   _password: cekH7UXxQhos
   _url: https://stream.watsonplatform.net/speech-to-text/api
@@ -5216,7 +5216,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093026377590408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a251675fa13ce4529843b17d49e58975, type: 3}
   m_Name: 
@@ -5293,7 +5293,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093026377590408}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 18dfc27137ea046f49029ec22595ce82, type: 3}
   m_Name: 
@@ -5340,7 +5340,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1093026377590408}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4b7eed7bd1304f399f10d15eabd6e63, type: 3}
   m_Name: 
@@ -5365,17 +5365,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   usePerEyeCameras: 0
   useFixedUpdateForTracking: 0
---- !u!114 &114988258191753950
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1093026377590408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4ce3ace09cd540deacb52daa48e79a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &124420166875851980
 Behaviour:
   m_ObjectHideFlags: 1
