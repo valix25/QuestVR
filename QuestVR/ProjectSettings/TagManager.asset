@@ -16,6 +16,7 @@ TagManager:
   - Portal
   - Mummy
   - Dragon
+  - DragonHead
   layers:
   - Default
   - TransparentFX

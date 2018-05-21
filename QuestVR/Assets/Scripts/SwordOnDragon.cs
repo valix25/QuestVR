@@ -7,6 +7,7 @@ public class SwordOnDragon : MonoBehaviour {
 	public float threshold;
 	public bool isTaken;
 	public Material red;
+	public GameObject dragon;
 	//private Material originalMaterial;
 	private Renderer renderer;
 	private Vector3 originalLocalPos;
@@ -28,6 +29,10 @@ public class SwordOnDragon : MonoBehaviour {
 			isTaken = true;
 			//renderer.material = originalMaterial;
 			Destroy (gameObject);
+			dragon.GetComponent<Dragon> ().SwordNumber -= 1;
+			if (dragon.GetComponent<Dragon> ().SwordNumber > 0) {
+				dragon.GetComponent<Dragon> ().startWalking ();
+			}
 		}
 	}
 

@@ -15,6 +15,7 @@ public class ControlAnimations : MonoBehaviour {
 	private float fireball_timer = 0.0f;
 	private bool started_laser = true;
 	private float laser_timer = 0.0f;
+	public GameObject dragon;
 
 	#region
 	[Header("Watson credentials")]
@@ -29,6 +30,7 @@ public class ControlAnimations : MonoBehaviour {
 	#endregion
 
 	private int mode;
+	private bool calmDownDragon = false;
 
 	[Header("Animations")]
 	public Camera camera;
@@ -224,6 +226,10 @@ public class ControlAnimations : MonoBehaviour {
 					if (alt.transcript.ToLower ().Contains ("stop")) {
 						mode = 0;
 					}
+					if (alt.transcript.ToLower ().Contains ("calm down") || alt.transcript.ToLower ().Contains ("calm") ||
+					   alt.transcript.ToLower ().Contains ("let me help you")) {
+						calmDownDragon = true;
+					}
 				}
 
 				//				if (res.keywords_result != null && res.keywords_result.keyword != null)
@@ -332,6 +338,15 @@ public class ControlAnimations : MonoBehaviour {
 			anim.SetBool ("run", true);
 		} else {
 			anim.SetBool ("run", false);
+		}
+
+		if (Input.GetKey (KeyCode.K) && _active == false) {
+			dragon.GetComponent<Dragon> ().backToSleep ();
+		} else {
+			if (_active && calmDownDragon) {
+				dragon.GetComponent<Dragon> ().backToSleep ();
+				calmDownDragon = false;
+			}
 		}
 	}
 
