@@ -8,7 +8,7 @@ using IBM.Watson.DeveloperCloud.DataTypes;
 
 public class ControlAnimations : MonoBehaviour {
 
-	private Animator anim;
+	public Animator anim;
 	private bool started_defend = false;
 	private float defend_timer = 0.0f;
 	private bool started_fireball = true;

@@ -30,6 +30,10 @@ public class PlayerMove : MonoBehaviour {
 		} else if (OVRInput.GetDown (OVRInput.Button.PrimaryTouchpad) && activeWalk) {
 			activeWalk = false;
 			speed = 0;
+			Animator anim = arms.GetComponent<ControlAnimations> ().anim;
+			if (anim) {
+				anim.SetBool ("run", false);
+			}
 		}
 		if (activeWalk) {
 			currentX = OVRInput.GetLocalControllerRotation (OVRInput.Controller.RTrackedRemote).eulerAngles.x;
@@ -40,31 +44,41 @@ public class PlayerMove : MonoBehaviour {
 					speed = 16;
 					Debug.Log ("VR: Speed set to " + speed);
 				}
+				Animator anim = arms.GetComponent<ControlAnimations> ().anim;
+				if (anim) {
+					anim.SetBool ("run", true);
+				}
 			} else if (differenceX >= 50 && differenceX < 70) {
 				if (speed != 8) {
 					speed = 8;
 					Debug.Log ("VR: Speed set to " + speed);
+					stopRunning ();
 				}
+
 			} else if (differenceX >= 30 && differenceX < 50) {
 				if (speed != 5) {
 					speed = 5;
 					Debug.Log ("VR: Speed set to " + speed);
+					stopRunning ();
 				}
 			} else if (differenceX >= 0 && differenceX < 30) {
 				if (speed != 1) {
 					speed = 1;
 					Debug.Log ("VR: Speed set to 1");
+					stopRunning ();
 				}
 			} else if (differenceX < 0 && differenceX > -30) {
 				if (Mathf.Abs (speed) != 4) {
 					speed = -4;
 					Debug.Log ("VR: Speed set to 1");
+					stopRunning ();
 				}
 
 			} else if (differenceX < -30 && differenceX > -100) {
 				if (Mathf.Abs (speed) != 8) {
 					speed = -8;
 					Debug.Log ("VR: Speed set to 1");
+					stopRunning ();
 				}
 			}
 			else {
@@ -76,6 +90,16 @@ public class PlayerMove : MonoBehaviour {
 				speed = 0;
 		}
 	}
+
+	void stopRunning(){
+		Animator anim = arms.GetComponent<ControlAnimations> ().anim;
+		if (anim) {
+			anim.SetBool ("run", false);
+			Debug.Log ("VR: Stopped running ");
+		}
+	}
+
+
 	public void Translate(){
 		Vector3 move = Vector3.zero;
 		move += centralAnchor.transform.forward;
